@@ -1,0 +1,228 @@
+	
+					SHERIFF OF NOTTINGHAM
+
+							Copyright 2019: Livadaru Alexandru-Valentin
+
+				  	        _.---._
+					     .-' ((O)) '-.
+					      \ _.\_/._ /
+					       /..___..\
+					       ;-.___.-;
+					      (| e ) e |)     .;.
+					       \  /_   /      ||||
+					       _\__-__/_    (\|'-|
+					     /` / \V/ \ `\   \ )/
+					    /   \  Y  /   \  /=/
+					   /  |  \ | / {}  \/ /
+					  /  /|   `|'   |\   /
+					  \  \|    |.   | \_/
+					   \ /\    |.   |
+					    \_/\   |.   |
+					    /)_/   |    |
+					   // ',__.'.__,'
+					  //   |   |   |
+					 //    |   |   |
+					(/     |   |   |
+					       |   |   |
+					       | _ | _ |
+					       |   |   |
+					       |   |   |
+					       |   |   |
+					       |___|___|
+					       /  J L  \
+					      (__/   \__)
+Name: Livadaru Alexandru-Valentin
+Group: 323CA
+
+PACKAGE EXPLANATIONS:
+	
+		COMPARATORS
+	
+
+	GoodsComparator
+
+-Sort the cards by their profit and if the profit of two cards is equal
+	sort them by their id in descending order.
+	
+
+	PlayersComparator
+
+-Sort the players by their profit and if the profit is equal, sort them by
+	Id in ascending order.
+
+		MAIN
+
+	PlayersCreator
+
+-Made the class singleton beacuse we need it once.
+
+-Takes the input and creates an instance (depending on the input strategy)
+	that is stored in the players vector.
+
+
+	VerifyPlayers
+
+-Made the class singleton beacuse we need it once.
+
+-Takes one players at a time which becomes a sheriff.
+
+-If the sheriff uses Bribe strategy, we find out the traders that must be
+	verified (left and right traders) .
+
+-We take the bribe from the other players if they offer.
+
+-Free the bag, the cards drawn and the frequency vectors of the goods
+	in order to be clear for the next subrounds. 
+
+-If the sheriff uses Basic or Greedy strategy, they verify all the players
+	and if the type of sheriff strategy accepts bribe, it takes the bribe
+	and lets the commerciant pass the verification post.
+
+-Clear the commerciant bag, card and frequency vector.
+
+
+	ProfitGiver
+
+-Made the class singleton beacuse we need it once.
+
+-Takes all the players and looks in their final bags (stand).
+
+-It gives the profit of the cards to the player, including the profit from
+	the bonus items received from the illegal goods.
+
+
+	FrequencyGiver
+
+-Made the class singleton beacuse we need it once.
+
+-Stores the frequency of every good (including the bonus one) in a vector.
+
+-On the 0 position there is the frequency of the 0 card, on position 1 there
+	is the frequency of good 1 and so on.
+
+-Every player has a frequency vector. 
+
+
+	BonusGiver
+
+-Made the class singleton beacuse we need it once.
+
+-Iterate through all the rounds with the k for.
+
+-Takes one object at a time then iterate through all the players.
+
+-If a player has the biggest frequency for a card, free the kingFreqPlayers
+	vector (extra details below) and add the player in the array.
+
+-Interchange the king and queen values and IDs.
+
+-If a player has the frequncy of a good smaller than the king's frequency
+	and bigger than the queen's frequency, we update the queen.
+
+-In case a player with the same king frequency is found, we put the player
+	in the kingFreqPlayers array and later decide the king.
+
+-The first player in this array is the king and the second is the queen
+	(the smaller the Id the better).
+
+-Give the bonuses to the players.
+
+
+	PlayersDisplay
+
+-Made the class singleton beacuse we need it once.
+
+-It displays the output depending of the player type.
+
+		PLAYERS
+
+	Human
+
+-The "mother" class with all the fields needed for a player.
+
+-BasicPlayer, GreedyPlayer, BribePlayer inherit this class.
+
+
+	BasicPlayer - Commerciant method
+
+-Draws the cards.
+
+-Checks if there are only illegal cards or if there are legal cards too.
+
+-If there are only illegal cards (ok = 0), take the card with the biggest profit
+	and store it in the bag (not before we free the bag).
+
+-Set the bag content and delete the chosen card from the 10 cards drawn.
+
+-If there are also legal goods (ok = 1), put the frequency of every legal good
+	in the map.
+
+-Find out the item with the biggest frequency.
+
+-If there are items with the same frequncy, we look for the items with
+	the biggest profit.
+
+-If items have the same profit too, we look for the cards with the bigger Id.
+
+-Finally we put the cards in the bag.
+
+
+	BasicPlayer - sheriff method
+
+-If the sheriff has enough money (16 or more), we search it's bag and if an
+	item is different from it's declared content we  set the honesty flag
+	to 0.
+
+-Calculate the penalty and put the items to be deleted in the 
+	itemsToBeTrashed array (to delete them from the bag).
+
+-Put the confiscated cards at the back of the deck of cards.
+
+-Delete the illegal cards caught (if there are any).
+
+-Give the money to the sheriff if the trader was lying and take the money
+	from the sheriff if the trader was right.
+
+-Put the goods that made it past the sheriff in the final bag.
+
+	GreedyPlayer - commerciant
+
+-Same thing as Basic, but if the round number is even, it checks for illegal
+	cards.
+
+-If there are any, it looks for the one with the biggest profit and puts it in
+	the bag.
+
+
+	GreedyPlayer - sheiff
+
+-Checks for bribe.
+
+-If any, take and let the trader go.
+
+-If not, verify him.
+	
+
+	BribePlayer - commerciant
+
+-Makes a copy of the queue in oreder to check if there are any illegal goods.
+
+-If there aren't or he has 5 or less money -> basic strategy.
+
+-If there are it takes the cards and sorts them by profit in descending order.
+
+-If a card is illegal, it calculates the potential penalty and if he can
+	afford it, he puts the card in the bag. Then, adds to the illegal
+	counter 1.
+
+-Same thing for the legal goods, but without illegal counter.
+
+-Set the bribe depending on the illegal counter.
+
+	BribePlayer - sheriff
+
+-Same thing as basic sheriff.
+
+Thank you for reading it and have a nice day :)
+
+	

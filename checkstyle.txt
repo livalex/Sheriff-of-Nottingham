@@ -1,0 +1,4 @@
+Starting audit...
+[ERROR] /home/alexpc/Facultate/JAVA/tema1/src/com/tema1/main/VerifyPlayers.java:26: Line is longer than 100 characters (found 107). [LineLength]
+Audit done.
+Checkstyle ends with 1 errors.
