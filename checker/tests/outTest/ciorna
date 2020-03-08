@@ -1,0 +1,56 @@
+//                        if (sheriff.getPlayerType() == 2) {
+//                            if (players.size() == 2) {
+//                                int index;
+//
+//                                if (i == 0) {
+//                                    index = 1;
+//                                } else {
+//                                    index = 0;
+//                                }
+//                                Human com = players.get(index);
+//                                com.commerciant(roundNumber, queue, goodsFactory);
+//                                sheriff.sheriff(com, gameInput);
+//                                com.getBag().clear();
+//                                com.getCards().clear();
+//                                com.getFreq().clear();
+//                            } else {
+//                                int index1, index2;
+//
+//                                if (i == 0) {
+//                                    index1 = 1;
+//                                    index2 = players.size() - 1;
+//                                } else if (i == players.size() - 1) {
+//                                    index1 = 0;
+//                                    index2 = players.size() - 2;
+//                                } else {
+//                                    index1 = i - 1;
+//                                    index2 = i + 1;
+//                                }
+//
+//                                Human player1 = players.get(index1);
+//                                Human player2 = players.get(index2);
+//
+//                                player1.commerciant(roundNumber, queue, goodsFactory);
+//                                sheriff.sheriff(player1, gameInput);
+//                                player1.getBag().clear();
+//                                player1.getCards().clear();
+//                                player1.getFreq().clear();
+//
+//                                player2.commerciant(roundNumber, queue, goodsFactory);
+//                                sheriff.sheriff(player2, gameInput);
+//                                player2.getBag().clear();
+//                                player2.getCards().clear();
+//                                player2.getFreq().clear();
+//
+//                                if (i != j && j != index1 && j !=index2) {
+//                                    Human commer = players.get(j);
+//                                    if (commer.getBribe() != 0) {
+//                                        int money1 = sheriff.getMoney() + commer.getBribe();
+//                                        sheriff.setMoney(money1);
+//
+//                                        int money2 = commer.getMoney() - commer.getBribe();
+//                                        commer.setMoney(money2);
+//                                    }
+//                                }
+//                            }
+//                        } else {
